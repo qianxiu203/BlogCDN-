@@ -1,3 +1,6 @@
+# 成品
+![image](https://github.com/user-attachments/assets/ecb988ae-32f5-42a7-905f-d83357a76204)
+
 # cloudflare workers 部署
 创建一个workers ，名字随意
 ![image](https://github.com/user-attachments/assets/d257f884-71c3-4718-a8ab-14c12dd677b6)
