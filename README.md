@@ -15,4 +15,4 @@ https://github.com/jc-lw/ping-/blob/main/ping%E6%99%BA%E8%83%BD%E7%BD%91%E5%85%B
 把域名替换成你自己的
 ![image](https://github.com/user-attachments/assets/1ff0b246-f5e3-4ff1-9460-e86c9fee020c)
 # 成品
-![image](https://github.com/user-attachments/assets/ecb988ae-32f5-42a7-905f-d83357a76204)
+![image](https://github.com/user-attachments/assets/9bc75f9b-fd0b-445c-845a-14ebb127826f)
