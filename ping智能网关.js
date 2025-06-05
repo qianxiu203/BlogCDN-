@@ -161,20 +161,24 @@ addEventListener('fetch', event => {
   
             async function measureAllLatencies() {
                 const results = await Promise.all([
-                    testLatency('https://blbl.us.kg', 'cloudflare-latency', 'cloudflare-time'),
-                    testLatency('https://blog.lwxpz.com', 'cloudflare1-latency', 'cloudflare1-time'),
-                    testLatency('https://lwxpz.com', 'cloudflare2-latency', 'cloudflare2-time'),
-                    testLatency('https://yx.lwxpz.com', 'cloudflare3-latency', 'cloudflare3-time'),
-                    testLatency('https://laowang.us.kg', 'cloudflare4-latency', 'cloudflare4-time')
+                    // 您的第一个网址
+                    testLatency('https://bk.0407123.xyz', 'cdn1-latency', 'cdn1-time'),
+                    // 您的第二个网址
+                    testLatency('https://new.0407123.xyz', 'cdn2-latency', 'cdn2-time'),
+                    // 您的第三个网址
+                    testLatency('https://ys.0407123.xyz', 'cdn3-latency', 'cdn3-time')
                 ]);
   
-                const cdns = ['Cloudflare', 'Cloudflare1', 'cloudflare2', 'cloudflare3', 'cloudflare4'];
+                // 更新 CDN 名称，您可以根据需要自定义这些名称
+                const cdns = ['CDN 1', 'CDN 2', 'CDN 3'];
                 const fastestIndex = results.indexOf(Math.min(...results));
                 document.getElementById('fastest-cdn').textContent = '最快 CDN: ' + cdns[fastestIndex] + ' ✅';
   
                 // 自动跳转到最快的 CDN
                 const fastestCDNUrls = [
-                    'https://blbl.us.kg', 'https://blog.lwxpz.com', 'https://lwxpz.com', 'https://yx.lwxpz.com', 'https://laowang.us.kg'
+                    'https://bk.0407123.xyz',
+                    'https://new.0407123.xyz',
+                    'https://ys.0407123.xyz'
                 ];
                 window.location.href = fastestCDNUrls[fastestIndex];
             }
@@ -191,4 +195,3 @@ addEventListener('fetch', event => {
         headers: { 'content-type': 'text/html;charset=UTF-8' },
     });
   }
-  
