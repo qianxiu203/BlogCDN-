@@ -1,10 +1,10 @@
 addEventListener('fetch', event => {
     event.respondWith(handleRequest(event.request))
-  })
-  
-  async function handleRequest(request) {
+})
+
+async function handleRequest(request) {
     const clientIP = request.headers.get('cf-connecting-ip') || '无法获取';
-  
+
     const htmlContent = `
     <!DOCTYPE html>
     <html lang="zh-CN">
@@ -94,27 +94,27 @@ addEventListener('fetch', event => {
             <h1>BlogCDN 智能访问**</h1>
             <div class="cdn-list">
                 <div class="cdn-item">
-                    <p>Cloudflare CDN:</p>
+                    <p>Cloudflare:</p>
                     <div class="latency-bar"><div class="latency-fill" id="cloudflare-latency"></div></div>
                     <span id="cloudflare-time">测量中...</span>
                 </div>
                 <div class="cdn-item">
-                    <p>Cloudflare1 CDN:</p>
+                    <p>Amazon CloudFront:</p>
                     <div class="latency-bar"><div class="latency-fill" id="cloudflare1-latency"></div></div>
                     <span id="cloudflare1-time">测量中...</span>
                 </div>
                 <div class="cdn-item">
-                    <p>Cloudflare2 CDN:</p>
+                    <p>Alibaba Cloud:</p>
                     <div class="latency-bar"><div class="latency-fill" id="cloudflare2-latency"></div></div>
                     <span id="cloudflare2-time">测量中...</span>
                 </div>
                 <div class="cdn-item">
-                    <p>Cloudflare3 CDN:</p>
+                    <p>Fastly:</p>
                     <div class="latency-bar"><div class="latency-fill" id="cloudflare3-latency"></div></div>
                     <span id="cloudflare3-time">测量中...</span>
                 </div>
                 <div class="cdn-item">
-                    <p>Cloudflare4 CDN:</p>
+                    <p>BunnyCDN:</p>
                     <div class="latency-bar"><div class="latency-fill" id="cloudflare4-latency"></div></div>
                     <span id="cloudflare4-time">测量中...</span>
                 </div>
@@ -161,24 +161,30 @@ addEventListener('fetch', event => {
   
             async function measureAllLatencies() {
                 const results = await Promise.all([
-                    // 您的第一个网址
-                    testLatency('https://bk.0407123.xyz', 'cdn1-latency', 'cdn1-time'),
-                    // 您的第二个网址
-                    testLatency('https://new.0407123.xyz', 'cdn2-latency', 'cdn2-time'),
-                    // 您的第三个网址
-                    testLatency('https://ys.0407123.xyz', 'cdn3-latency', 'cdn3-time')
+                    // Cloudflare CDN
+                    testLatency('https://cdn1.example.com/test.jpg', 'cloudflare-latency', 'cloudflare-time'),
+                    // Amazon CloudFront CDN
+                    testLatency('https://cdn2.example.com/test.jpg', 'cloudflare1-latency', 'cloudflare1-time'),
+                    // Alibaba Cloud CDN
+                    testLatency('https://cdn3.example.com/test.jpg', 'cloudflare2-latency', 'cloudflare2-time'),
+                    // Fastly CDN
+                    testLatency('https://cdn4.example.com/test.jpg', 'cloudflare3-latency', 'cloudflare3-time'),
+                    // BunnyCDN
+                    testLatency('https://cdn5.example.com/test.jpg', 'cloudflare4-latency', 'cloudflare4-time')
                 ]);
   
-                // 更新 CDN 名称，您可以根据需要自定义这些名称
-                const cdns = ['CDN 1', 'CDN 2', 'CDN 3'];
+                // 更新 CDN 名称
+                const cdns = ['Cloudflare', 'Amazon CloudFront', 'Alibaba Cloud', 'Fastly', 'BunnyCDN'];
                 const fastestIndex = results.indexOf(Math.min(...results));
                 document.getElementById('fastest-cdn').textContent = '最快 CDN: ' + cdns[fastestIndex] + ' ✅';
   
                 // 自动跳转到最快的 CDN
                 const fastestCDNUrls = [
-                    'https://bk.0407123.xyz',
-                    'https://new.0407123.xyz',
-                    'https://ys.0407123.xyz'
+                    'https://cdn1.example.com',
+                    'https://cdn2.example.com',
+                    'https://cdn3.example.com',
+                    'https://cdn4.example.com',
+                    'https://cdn5.example.com'
                 ];
                 window.location.href = fastestCDNUrls[fastestIndex];
             }
@@ -189,9 +195,9 @@ addEventListener('fetch', event => {
     </body>
     </html>
     `;
-  
+
     // 返回 HTML 响应
     return new Response(htmlContent, {
         headers: { 'content-type': 'text/html;charset=UTF-8' },
     });
-  }
+}
